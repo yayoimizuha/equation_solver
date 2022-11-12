@@ -25,7 +25,7 @@ int main() {
     //                                  {23, 19, 23, 25, 9,  19, 5,  11, 8}};
     // vector<double> array2 = {1399, 944, 1105, 1054, 1129, 1763, 847, 1212, 1546};
 
-    auto random_array = equations_generator(20);
+    auto random_array = equations_generator(13);
 
     //for (int i = 0; i < array1.size(); ++i) {
     //    auto variable = 'a';
@@ -55,10 +55,7 @@ int main() {
 
     auto variable = 'a';
     for (const auto &i: Sweep_array(random_array)) {
-        cout << variable++ << ": ";
-        cout << i.back() << ' ';
-
-        cout << endl;
+        cout << variable++ << ": " << i.back() << endl;
     }
 
     return 0;
