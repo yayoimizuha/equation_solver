@@ -134,7 +134,7 @@ vector<vector<double>> Sweep_array(const vector<vector<double>> &input_array) {
     for (int i = 0; i < return_array.size(); ++i) {
         vector<pair<double, int>> swap_array;
         for (int j = i; j < return_array.size(); ++j) {
-            swap_array.emplace_back(abs(input_array[j][i]), j);
+            swap_array.emplace_back(abs(return_array[i][j]), i);
         }
         auto max_el = *max_element(swap_array.begin(), swap_array.end());
         if (max_el.first < 1e-7) {

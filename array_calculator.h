@@ -1,8 +1,31 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <ratio>
+#include <ios>
 
 using namespace std;
+
+
+void Print_array(const vector<vector<double>> &input_array) {
+#ifdef DEBUG_FLAG
+    auto output_flag = cout.flags();
+    cout << setprecision(5);
+    for (const auto &j: input_array) {
+        for (const auto &k: j) {
+            if (abs(k) < 1e-10) {
+                cout << right << setw(9) << 0;
+            } else {
+                cout << right << setw(9) << k;
+            }
+            cout << ' ';
+        }
+        cout << endl;
+    }
+    cout.flags(output_flag);
+    cout << endl;
+#endif
+}
 
 vector<vector<double>> Transpose_array(const vector<vector<double>> &input_array) {
     auto array_length = input_array[0].size();
@@ -62,6 +85,7 @@ vector<vector<double>> Identity_array(size_t size) {
 }
 
 vector<vector<double>> Sweep_array(const vector<vector<double>> &input_array) {
+    Print_array(input_array);
     vector<vector<double>> return_array(input_array.size());
     for (int i = 0; i < input_array.size(); ++i) {
         return_array[i].resize(input_array[i].size());
@@ -70,7 +94,7 @@ vector<vector<double>> Sweep_array(const vector<vector<double>> &input_array) {
     for (int i = 0; i < return_array.size(); ++i) {
         vector<pair<double, int>> swap_array;
         for (int j = i; j < return_array.size(); ++j) {
-            swap_array.emplace_back(abs(input_array[j][i]), j);
+            swap_array.emplace_back(abs(return_array[j][i]), j);
         }
         auto max_el = *max_element(swap_array.begin(), swap_array.end());
         if (max_el.first < 1e-7) {
@@ -92,6 +116,7 @@ vector<vector<double>> Sweep_array(const vector<vector<double>> &input_array) {
                 return_array[j][k] += return_array[i][k] * a;
             }
         }
+        Print_array(return_array);
     }
     for (auto &i: return_array) {
         for (auto &j: i) {
