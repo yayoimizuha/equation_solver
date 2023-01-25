@@ -22,7 +22,7 @@ int main() {
     for (const auto &i: Sweep_array(random_array)) {
         cout << variable++ << ": " << i.back() << endl;
     }
-    cout << duration_cast<milliseconds>(system_clock::now() - start_time) << endl;
+    cout << duration_cast<milliseconds>(system_clock::now() - start_time).count() << endl;
     return 0;
 }
 
